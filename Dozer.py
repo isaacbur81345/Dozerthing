@@ -143,7 +143,7 @@ while running:
 
     if count <= 0:
         count = 10
-        if random.randint(1,6000000) == 1:
+        if random.randint(1,6000) == 1:
             if dozerstate == 0:
                 dozerstate = 1
                 phasetime = 0
@@ -242,4 +242,5 @@ while running:
 pygame.quit()
 
 sys.exit()
+
 
