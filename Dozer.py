@@ -5,9 +5,6 @@ import win32api
 import sys
 import random
 import os
-import threading
-import requests
-import time
 
 from pathlib import Path
 
@@ -245,3 +242,4 @@ while running:
 pygame.quit()
 
 sys.exit()
+
