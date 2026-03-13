@@ -95,8 +95,6 @@ phasetime = 0
 moving = False
 what = False
 
-MY_EVENT = pygame.USEREVENT + 1
-
 rotation = 0
 last_rotation = None
 current_sprite = sprites[0]
@@ -112,32 +110,6 @@ running = True
 global ok
 ok = [-1,-1]
 
-def socket_listener():
-    while True:
-    
-        try:
-            r = requests.get(
-                "https://paperssite.up.railway.app/api/commands",
-                params={"key": "IsaacBJ"},
-                timeout=2
-            )
-
-            data = r.json()
-
-            for cmd in data["commands"]:
-                if cmd["cmd"] == "spawn_dozer":
-                    pygame.event.post(
-                        pygame.event.Event(MY_EVENT, user=cmd["user"])
-                    )
-
-        except Exception as e:
-            print(e)
-            pass
-
-        time.sleep(1)
-
-threading.Thread(target=socket_listener, daemon=True).start()
-
 # --- Main loop ---
 while running:
     dt = clock.tick(60)
@@ -148,15 +120,6 @@ while running:
             if dozerstate == 0:
                 phasetime = phasetime
                 #running = False
-
-        if event.type == MY_EVENT:
-            print("Received:", event.user)
-            if dozerstate == 0:
-                dozerstate = 1
-                phasetime = 0
-                moving = True
-                current_sprite = sprites[0]
-                dozersfx.play()
     
     if what:
         for key in range(256):
@@ -280,4 +243,5 @@ while running:
     pygame.display.update()
 
 pygame.quit()
+
 sys.exit()
