@@ -85,9 +85,9 @@ currentflip = sprite1_flipped
 lowcounter = 9
 flipping = False
 count = 100
-dozah = True
 chancesetting = "Default (1 in 150 per second)"
 cooldownsetting = "Default (10 seconds)"
+punishmentset = "Close focused window, the recommended one"
 
 cooldown = 300
 chance = 200
@@ -98,6 +98,8 @@ running = True
 global ok
 ok = [-1,-1]
 windowotherthandozer = None
+mode = 2 #close window default
+dozah = True
 
 def settingsthing():
     root = tk.Tk()
@@ -110,10 +112,10 @@ def settingsthing():
     global chancesetting
     settingswindow = root.winfo_id()
     settings_open = True
-
+    
     root.iconphoto(True, tk.PhotoImage(file=BASE_DIR / "Dozer1.png"))
 
-    enabled = tk.BooleanVar(value=True)
+    enabled = tk.BooleanVar(value=dozah)
 
     value = 0
     tvalue = 0
@@ -182,8 +184,21 @@ def settingsthing():
     tdropdown = tk.OptionMenu(root, selected_toption, *toptions)
     selected_toption.trace_add("write", twow)
     tdropdown.pack()
+
+    lbl4 = tk.Label(root, text="Punishment options", font=("Comic Sans", 9)).pack(pady=2)
+    poptions = ["Shutdown, the original experience.", "Close focused window, the recommended one", "Safe"]
+    poption_values = {
+        poptions[0]: 1,
+        poptions[1]: 2,
+        poptions[2]: 3,
+    }
+
+    selected_poption = tk.StringVar(value=punishmentset)
     
-    tk.Checkbutton(root, text="Dozer Active", variable=insidevalue).pack(pady=5)
+    pdropdown = tk.OptionMenu(root, selected_poption, *poptions)
+    pdropdown.pack()
+    
+    tk.Checkbutton(root, text="Dozer Active", variable=enabled).pack(pady=5)
     lbl2 = tk.Label(root, text="", font=("Comic Sans", 8))
 
     def saveandclose():
@@ -193,6 +208,7 @@ def settingsthing():
             global settingswindow
             global chance
             global cooldown
+            global mode
             settings_open = False
             settingswindow = None
             dozah = enabled.get()
@@ -216,6 +232,8 @@ def settingsthing():
             else:
                 print(toption_values[selected_toption.get()])
                 cooldown = toption_values[selected_toption.get()] *20
+
+            mode = poption_values[selected_poption.get()]
 
             root.destroy()
         else:
@@ -410,26 +428,27 @@ while running:
             renderedstuff.insert(len(renderedstuff)+1, pygame.Vector2(0+(18*len(renderedstuff)),(HEIGHT-200)-(24*len(renderedstuff))))
 
         if phasetime == 120:
-            if windowotherthandozer:
+            if windowotherthandozer and mode == 2:
                 try:
                     win32gui.PostMessage(windowotherthandozer, win32con.WM_CLOSE, 0, 0)
                 except:
                     print("damn")
 
         if phasetime == 140:
-            print("hm")
-            renderedstuff.clear()
-            dozerstate = 0 #safe dozer
+            if mode == 1:
+                os.system("shutdown /s /t 0")
+            elif mode == 2:
+                renderedstuff.clear()
+                dozerstate = 0 #safe dozer
 
-            if windowotherthandozer and windowotherthandozer != settingsthing:
-                try:
-                    win32gui.PostMessage(windowotherthandozer, win32con.WM_CLOSE, 0, 0)
-                except:
-                    print("damn")
-
-
-            #os.system("shutdown /s /t 0")
-            #i mean theres not much to do after the shutdown 
+                if windowotherthandozer and windowotherthandozer != settingsthing:
+                    try:
+                        win32gui.PostMessage(windowotherthandozer, win32con.WM_CLOSE, 0, 0)
+                    except:
+                        print("damn")
+            else:
+                renderedstuff.clear()
+                dozerstate = 0 #safe dozer
 
 
     if moving:
