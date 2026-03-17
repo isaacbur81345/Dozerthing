@@ -219,6 +219,9 @@ def settingsthing():
             global chancesetting
             chancesetting = selected_coption.get()
 
+            global punishmentset
+            punishmentset = selected_poption.get()
+
             if selected_coption.get() == "Custom":
                 chance = value
                 print(value)
@@ -251,12 +254,16 @@ def settingsthing():
             global dozah
             global chance
             global cooldown
+            global mode
 
             global cooldownsetting
             cooldownsetting = selected_toption.get()
 
             global chancesetting
             chancesetting = selected_coption.get()
+
+            global punishmentset
+            punishmentset = selected_poption.get()
 
             if selected_coption.get() == "Custom":
                 chance = value
@@ -271,6 +278,8 @@ def settingsthing():
             else:
                 print(toption_values[selected_toption.get()])
                 cooldown = toption_values[selected_toption.get()] *20
+
+            mode = poption_values[selected_poption.get()]
 
             dozah = enabled.get()
         else:
