@@ -90,7 +90,7 @@ cooldownsetting = "Default (10 seconds)"
 punishmentset = "Close focused window, the recommended one"
 
 cooldown = 300
-chance = 200
+chance = 75
 
 renderedstuff = []
 
@@ -113,7 +113,7 @@ def settingsthing():
     settingswindow = root.winfo_id()
     settings_open = True
     
-    root.iconphoto(True, tk.PhotoImage(file=BASE_DIR / "Dozer1.png"))
+    root.iconphoto(True, tk.PhotoImage(file=BASE_DIR / "Dozericon.png"))
 
     enabled = tk.BooleanVar(value=dozah)
 
