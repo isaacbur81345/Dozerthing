@@ -3,6 +3,7 @@
  <img src="https://raw.githubusercontent.com/isaacbur81345/Dozerthing/d34cf94052633ac659fdf4be889cead5ca48f172/Dozericon.png" alt="Dozer's icon" width="64">
 </p>
 This is basically dozer but system wide and if you move it puts any of the punishments you chose, the default one is focus window close
+
 If you don't know what dozer is, basically what you need to do is just don't move when he appears, when he opens your eye and you move your mouse/press a key, dozer will attack.
 
 ## stuff it does
