@@ -1,3 +1,6 @@
+<p align="center">
+ <img src="https://raw.githubusercontent.com/isaacbur81345/Dozerthing/d34cf94052633ac659fdf4be889cead5ca48f172/Dozericon.png" alt="Dozer's icon" width="640">
+</p>
 # Dozer thing
 This is basically dozer but system wide and if you move it puts any of the punishments you chose, the default one is pc shutdown
 
