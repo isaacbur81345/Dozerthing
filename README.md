@@ -2,6 +2,7 @@
 <p align="center">
  <img src="https://raw.githubusercontent.com/isaacbur81345/Dozerthing/d34cf94052633ac659fdf4be889cead5ca48f172/Dozericon.png" alt="Dozer's icon" width="64">
 </p>
+
 Download it at [releases](https://github.com/isaacbur81345/Dozerthing/releases)
 
 This is basically dozer but system wide and if you move it puts any of the punishments you chose, the default one is focus window close
